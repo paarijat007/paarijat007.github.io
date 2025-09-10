@@ -2,285 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Paarijat | Developer • Builder</title>
-  <meta name="description" content="Paarijat — engineer and builder. Projects, writing, and ways to reach me." />
-  <meta property="og:title" content="Paarijat | Developer • Builder" />
-  <meta property="og:description" content="Paarijat — engineer and builder." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1520975922284-7b68329f0c07?q=80&w=1600&auto=format&fit=crop" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paarijat | SDE-AI • Agentic Systems</title>
+  <meta name="description" content="Paarijat builds AI-first, agentic B2B products. Backend lead and agent architecture designer." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg0: #0a0b10;
-      --bg1: #11131b;
-      --fg:  #e9ecf1;
-      --muted:#a9b3c0;
-      --brand:#8a7dff;
-      --brand2:#00d1ff;
-      --glass: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg0:#0a0b10; --bg1:#10131b; --fg:#e9ecf1; --muted:#a9b3c0;
+      --brand:#8a7dff; --brand2:#00d1ff; --glass:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12); --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--fg); background:linear-gradient(120deg,var(--bg0),var(--bg1));
-      overflow-x:hidden;
-    }
-
-    /* Animated gradient backdrop */
-    .backdrop{
-      position:fixed; inset:-10vmax; z-index:-2;
-      background: radial-gradient(60vmax 60vmax at 20% 20%, rgba(138,125,255,.25), transparent 60%),
-                  radial-gradient(50vmax 50vmax at 80% 30%, rgba(0,209,255,.22), transparent 60%),
-                  radial-gradient(60vmax 60vmax at 50% 90%, rgba(255,70,120,.16), transparent 60%);
-      filter: blur(40px) saturate(120%);
-      animation: floatHue 18s ease-in-out infinite alternate;
-    }
+    body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--fg); background:linear-gradient(120deg,var(--bg0),var(--bg1)); overflow-x:hidden}
+    /* backdrop softened for mobile */
+    .backdrop{position:fixed; inset:-12vmax; z-index:-2; filter:blur(40px) saturate(120%);
+      background:radial-gradient(60vmax 60vmax at 20% 20%, rgba(138,125,255,.25), transparent 60%),
+                 radial-gradient(50vmax 50vmax at 80% 30%, rgba(0,209,255,.22), transparent 60%);
+      animation:floatHue 22s ease-in-out infinite alternate}
     @keyframes floatHue{to{transform:translateY(-2vmax) translateX(1vmax) scale(1.02)}}
-
-    /* Floating shapes */
-    .orb{
-      position:fixed; border-radius:50%; filter:blur(30px); opacity:.5; z-index:-1;
-      background: radial-gradient(circle at 30% 30%, var(--brand), transparent 55%);
-      animation: drift 24s linear infinite;
-    }
-    .orb.o1{width:28vmax;height:28vmax; left:-10vmax; top:30vh}
-    .orb.o2{width:22vmax;height:22vmax; right:-6vmax; top:10vh; animation-duration:28s}
-    @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(4vmax,-3vmax)}100%{transform:translate(0,0)}}
-
-    header{
-      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
-      background:linear-gradient(to bottom, rgba(10,11,16,.8), rgba(10,11,16,0));
-      border-bottom:1px solid var(--border);
-      z-index:5;
-    }
-    .nav{
-      max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px;
-      padding:14px 20px;
-    }
+    header{position:sticky; top:0; z-index:5; backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(to bottom, rgba(10,11,16,.85), rgba(10,11,16,0)); border-bottom:1px solid var(--border)}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:12px 16px}
     .brand{font-weight:800; letter-spacing:.6px}
     .spacer{flex:1}
-    .btn, .chip{
-      display:inline-flex; align-items:center; gap:10px; cursor:pointer; user-select:none;
+    .btn{display:inline-flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
       padding:10px 14px; border-radius:14px; border:1px solid var(--border);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      color:var(--fg); text-decoration:none; box-shadow:var(--shadow);
-      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    }
+      color:var(--fg); text-decoration:none; box-shadow:var(--shadow); transition:transform .15s, border-color .15s}
     .btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.22)}
-    .btn.primary{border-color:transparent;
-      background:linear-gradient(90deg, var(--brand), var(--brand2)); color:#0b0d12; font-weight:700}
+    .btn.primary{border-color:transparent; background:linear-gradient(90deg,var(--brand),var(--brand2)); color:#0b0d12; font-weight:700}
     .btn.ghost{background:transparent; box-shadow:none}
-    .chip{padding:8px 12px; font-size:.9rem; opacity:.9}
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+    .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
 
-    .hero{
-      max-width:1100px; margin:0 auto; padding:110px 20px 40px; display:grid;
-      grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
-    }
-    .headline{font-size:clamp(34px,6vw,64px); line-height:1.02; margin:0 0 18px}
-    .sub{font-size:clamp(15px,2.4vw,18px); color:var(--muted); margin:0 0 26px}
-    .card{
-      background:linear-gradient(180deg, var(--glass), rgba(255,255,255,0.03));
-      border:1px solid var(--border); border-radius:20px; padding:18px; box-shadow:var(--shadow);
-    }
-    .grid{
-      max-width:1100px; margin:40px auto; padding:0 20px;
-      display:grid; grid-template-columns:repeat(12,1fr); gap:16px;
-    }
-    .tile{grid-column:span 6; min-height:220px; position:relative; overflow:hidden}
+    /* layout */
+    .container{max-width:1100px; margin:0 auto; padding:0 16px}
+    .hero{padding:70px 0 24px}
+    .headline{font-size:clamp(28px,6vw,56px); line-height:1.08; margin:0 0 14px}
+    .sub{font-size:clamp(14px,2.6vw,18px); color:var(--muted); margin:0 0 22px}
+    .panel{background:linear-gradient(180deg,var(--glass), rgba(255,255,255,.03));
+      border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+
+    .section-title{color:var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; margin:40px 0 12px}
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+    .tile{grid-column:span 6; min-height:200px}
     .tile.big{grid-column:span 12}
     .tile h3{margin:0 0 6px}
     .tile p{margin:0; color:var(--muted)}
-    .badge{position:absolute; top:14px; right:14px; font-size:.75rem; padding:6px 10px; border-radius:999px; background:rgba(0,0,0,.35); border:1px solid var(--border)}
-    .project-links{display:flex; gap:12px; margin-top:14px}
+    .project-links{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
 
-    .section-title{
-      max-width:1100px; margin:60px auto 10px; padding:0 20px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:.78rem
-    }
+    /* form embed: responsive wrapper keeps aspect but grows on mobile */
+    .form-wrap{position:relative; width:100%; height:0; padding-bottom:160vh; /* tall on mobile for full form */
+      border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:rgba(0,0,0,.15)}
+    .form-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
-    footer{max-width:1100px; margin:80px auto 40px; padding:0 20px; color:var(--muted)}
-    .footer-grid{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+    footer{color:var(--muted); margin:60px 0 40px}
 
-    /* Reveal animations */
-    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
-    .reveal.on{opacity:1; transform:none}
-
-    /* Dark/light toggle */
-    .toggle{width:48px;height:28px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid var(--border); position:relative}
-    .dot{position:absolute; top:2px; left:2px; width:24px; height:24px; background:#fff; border-radius:50%; transition:left .2s ease}
-    .toggle.active .dot{left:22px}
-
-    /* Responsive */
+    /* mobile-first adaptations */
     @media (max-width:880px){
-      .hero{grid-template-columns:1fr; padding-top:80px}
-      .tile{grid-column:span 12}
+      .grid{grid-template-columns:repeat(6,1fr)}
+      .tile{grid-column:span 6}
+    }
+    @media (max-width:520px){
+      .nav{gap:8px}
+      .btn{padding:10px 12px}
+      .form-wrap{padding-bottom:200vh}
     }
 
-    /* Light theme */
+    /* light theme */
     .light{
       --bg0:#f7f8fb; --bg1:#eef1f7; --fg:#0e1015; --muted:#4b5563; --glass:rgba(255,255,255,.65);
-      --border:rgba(0,0,0,.08); --shadow: 0 8px 24px rgba(0,0,0,.12);
+      --border:rgba(0,0,0,.08); --shadow:0 8px 24px rgba(0,0,0,.12);
     }
-
-    /* Pretty links */
-    a.link{color:var(--brand2); text-decoration:none; border-bottom:1px dashed rgba(0,0,0,0); transition:border-color .2s}
+    .toggle{display:inline-flex; width:48px; height:28px; border-radius:999px; border:1px solid var(--border); align-items:center; padding:2px}
+    .knob{width:24px; height:24px; background:#fff; border-radius:999px; transform:translateX(0); transition:transform .2s}
+    .toggle.active .knob{transform:translateX(20px)}
+    a.link{color:var(--brand2); text-decoration:none; border-bottom:1px dashed transparent}
     a.link:hover{border-bottom-color:currentColor}
   </style>
 </head>
 <body>
   <div class="backdrop"></div>
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
 
   <header>
-    <nav class="nav">
+    <nav class="nav container">
       <div class="brand">PAARIJAT.ME</div>
       <div class="spacer"></div>
-
       <a class="btn ghost mono" href="#projects">Projects</a>
       <a class="btn ghost mono" href="#writing">Writing</a>
       <a class="btn" href="#contact">Contact</a>
-
-      <div id="themeToggle" class="btn toggle" title="Toggle theme">
-        <div class="dot"></div>
-      </div>
+      <button id="theme" class="toggle" aria-label="Toggle theme"><span class="knob"></span></button>
     </nav>
   </header>
 
-  <main>
+  <main class="container">
     <section class="hero">
-      <div>
-        <div class="chip mono">Engineer • Builder • Curious mind</div>
-        <h1 class="headline" id="typeTarget">Hi, I'm <span style="color:var(--brand)">Paarijat</span>.</h1>
-        <p class="sub">I design and build fast, thoughtful web experiences. I like clean systems, tiny details, and shipping real things. Below are a few highlights; the rest lives on GitHub.</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap">
-          <a class="btn primary" href="https://github.com/paarijat007" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="#projects">See projects</a>
-          <a class="btn ghost mono" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
-        </div>
+      <h1 class="headline">Building AI-first, agentic B2B products.</h1>
+      <p class="sub">
+        I’m Paarijat—SDE-AI focused on backend systems and agentic architectures:
+        multi-agent planning, retrieval, tool-use, and reliability. Currently leading backend and whole
+        agent design for vertical B2B products, exploring distribution strategies and why most enterprise AI efforts stall.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn primary" href="https://github.com/paarijat007" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="#form">Get in touch</a>
+        <a class="btn ghost mono" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
-
-      <div class="card reveal" style="min-height:300px; display:grid; place-items:center; text-align:center">
-        <div>
-          <div class="mono" style="opacity:.8">now</div>
-          <h3 style="margin:.4rem 0 0">Exploring performant frontends, tiny ML models, and cool domain names</h3>
-          <p style="color:var(--muted)">This pane updates as I ship new things.</p>
-        </div>
+      <div class="panel" style="margin-top:16px">
+        <div class="mono" style="opacity:.8">Focus</div>
+        <div>Agent orchestration, evaluators, robust tool calling, and production-grade serving.</div>
       </div>
     </section>
 
-    <div class="section-title mono" id="projects">Projects</div>
+    <h2 class="section-title mono" id="projects">Projects</h2>
     <section class="grid">
-      <article class="tile card reveal">
-        <span class="badge mono">Featured</span>
-        <h3>Hyperfolio</h3>
-        <p>A blazing-fast portfolio template using vanilla JS and CSS only. Lighthouse 100s. Deployable on GitHub Pages.</p>
+      <article class="tile panel">
+        <h3>Procurement Intelligence Agents</h3>
+        <p>Multi-agent system that fuses historical data, Argus reports, and current events to deliver stitched market views and faster decisions.</p>
         <div class="project-links">
-          <a class="btn" href="#" target="_blank">Live</a>
           <a class="btn ghost mono" href="#" target="_blank">Code</a>
         </div>
       </article>
-
-      <article class="tile card reveal">
-        <h3>TinyNotes</h3>
-        <p>A minimal notepad that syncs to localStorage. Less than 3 KB gzipped.</p>
+      <article class="tile panel">
+        <h3>Fare Rules Automation</h3>
+        <p>LLM-based pipeline on FastAPI + vLLM replacing legacy parsers, near-human accuracy with evaluator gates and fallbacks.</p>
         <div class="project-links">
-          <a class="btn" href="#" target="_blank">Live</a>
           <a class="btn ghost mono" href="#" target="_blank">Code</a>
         </div>
       </article>
-
-      <article class="tile card reveal big">
-        <h3>Image Playground</h3>
-        <p>Lightweight client-side effects: blur, pixelate, duotone. No server required.</p>
-        <div class="project-links">
-          <a class="btn" href="#" target="_blank">Live</a>
-          <a class="btn ghost mono" href="#" target="_blank">Code</a>
-        </div>
+      <article class="tile panel big">
+        <h3>Knowledge Graph API</h3>
+        <p>OWL/RDF processing to Neo4j with a simple API for term extraction; deployed on EC2.</p>
       </article>
     </section>
 
-    <div class="section-title mono" id="writing">Writing</div>
+    <h2 class="section-title mono" id="writing">Writing</h2>
     <section class="grid">
-      <article class="tile card reveal">
-        <h3>How I Ship Faster</h3>
-        <p>Notes on ruthless scoping, tooling that helps, and measuring what matters.</p>
+      <article class="tile panel">
+        <h3>Why 95% Enterprise AI Fails</h3>
+        <p>Notes on distribution, data pathways, missing evaluators, and over-fitting to demos.</p>
         <a class="link mono" href="#" target="_blank">Read</a>
       </article>
-      <article class="tile card reveal">
-        <h3>Vanilla Over Framework</h3>
-        <p>Why I default to zero-dependency frontends unless I truly need more.</p>
+      <article class="tile panel">
+        <h3>Designing Agentic Backends</h3>
+        <p>Patterns for planning, memory, and safety rails that actually ship.</p>
         <a class="link mono" href="#" target="_blank">Read</a>
       </article>
     </section>
 
-    <div class="section-title mono" id="contact">Contact</div>
-    <section class="grid">
-      <div class="tile card reveal">
-        <h3>Say hi</h3>
-        <p>DMs on <a class="link" href="https://github.com/paarijat007" target="_blank" rel="noopener">GitHub</a> work, or email me:</p>
-        <p class="mono">paarijat [dot] me [at] example [dot] com</p>
+    <h2 class="section-title mono" id="form">Get in touch</h2>
+    <section class="panel">
+      <p style="margin-top:0">Prefer async? Fill the form below and I’ll reach out.</p>
+      <div class="form-wrap">
+        <!-- Replace YOUR_FORM_ID with your Google Form ID. Keep ?embedded=true -->
+        <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" loading="lazy"></iframe>
       </div>
-      <div class="tile card reveal">
+    </section>
+
+    <h2 class="section-title mono" id="contact">Contact</h2>
+    <section class="grid">
+      <div class="tile panel">
+        <h3>Direct</h3>
+        <p>Email: <span class="mono">yourname [at] example [dot] com</span></p>
+      </div>
+      <div class="tile panel">
         <h3>Elsewhere</h3>
         <p>
-          <a class="link" href="#" target="_blank">LinkedIn</a> ·
-          <a class="link" href="#" target="_blank">Twitter</a> ·
-          <a class="link" href="#" target="_blank">Blog</a>
+          <a class="link" href="https://github.com/paarijat007" target="_blank" rel="noopener">GitHub</a> ·
+          <a class="link" href="#" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a class="link" href="#" target="_blank" rel="noopener">Blog</a>
         </p>
       </div>
     </section>
+
+    <footer>
+      <div class="mono">© <span id="year"></span> Paarijat • Built for GitHub Pages</div>
+    </footer>
   </main>
 
-  <footer>
-    <div class="footer-grid">
-      <div class="mono">© <span id="year"></span> Paarijat</div>
-      <div class="mono">Built with vanilla HTML/CSS/JS. Hosted on GitHub Pages.</div>
-    </div>
-  </footer>
-
   <script>
-    // Typewriter headline
-    (function(){
-      const el = document.getElementById("typeTarget");
-      const base = "Hi, I'm ";
-      const name = "Paarijat.";
-      el.textContent = base;
-      let i = 0;
-      function tick(){
-        if(i <= name.length){
-          el.innerHTML = base + '<span style="color:var(--brand)">' + name.slice(0, i) + '</span>';
-          i++;
-          setTimeout(tick, i < name.length ? 70 : 500);
-        }
-      }
-      tick();
-    })();
-
-    // Reveal on scroll
-    const reveals = [...document.querySelectorAll(".reveal")];
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); }});
-    }, {threshold:.18});
-    reveals.forEach(el=>io.observe(el));
-
-    // Theme toggle with localStorage
+    // theme
     const html = document.documentElement;
-    const toggle = document.getElementById("themeToggle");
+    const btn = document.getElementById("theme");
     const pref = localStorage.getItem("theme");
-    if(pref === "light"){ html.classList.add("light"); toggle.classList.add("active"); }
-    toggle.addEventListener("click", ()=>{
+    if(pref === "light"){ html.classList.add("light"); btn.classList.add("active"); }
+    btn.addEventListener("click", ()=>{
       html.classList.toggle("light");
-      toggle.classList.toggle("active");
+      btn.classList.toggle("active");
       localStorage.setItem("theme", html.classList.contains("light") ? "light" : "dark");
     });
-
-    // Year
+    // year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
