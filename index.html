@@ -18,70 +18,127 @@
     html,body{height:100%}
     body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--fg); background:linear-gradient(120deg,var(--bg0),var(--bg1)); overflow-x:hidden}
-    /* backdrop softened for mobile */
+    
     .backdrop{position:fixed; inset:-12vmax; z-index:-2; filter:blur(40px) saturate(120%);
       background:radial-gradient(60vmax 60vmax at 20% 20%, rgba(138,125,255,.25), transparent 60%),
                  radial-gradient(50vmax 50vmax at 80% 30%, rgba(0,209,255,.22), transparent 60%);
       animation:floatHue 22s ease-in-out infinite alternate}
     @keyframes floatHue{to{transform:translateY(-2vmax) translateX(1vmax) scale(1.02)}}
+    
     header{position:sticky; top:0; z-index:5; backdrop-filter:saturate(140%) blur(10px);
       background:linear-gradient(to bottom, rgba(10,11,16,.85), rgba(10,11,16,0)); border-bottom:1px solid var(--border)}
     .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:12px 16px}
-    .brand{font-weight:800; letter-spacing:.6px}
+    .brand{font-weight:800; letter-spacing:.6px; font-size:1.1rem}
     .spacer{flex:1}
+    
     .btn{display:inline-flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
       padding:10px 14px; border-radius:14px; border:1px solid var(--border);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      color:var(--fg); text-decoration:none; box-shadow:var(--shadow); transition:transform .15s, border-color .15s}
+      color:var(--fg); text-decoration:none; box-shadow:var(--shadow); transition:transform .15s, border-color .15s;
+      font-size:0.9rem; min-height:44px; /* Better touch targets */}
     .btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.22)}
     .btn.primary{border-color:transparent; background:linear-gradient(90deg,var(--brand),var(--brand2)); color:#0b0d12; font-weight:700}
     .btn.ghost{background:transparent; box-shadow:none}
     .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
 
+    /* Mobile menu */
+    .nav-menu{display:none}
+    .menu-toggle{display:none; background:none; border:none; color:var(--fg); font-size:1.5rem; cursor:pointer; padding:8px}
+
     /* layout */
     .container{max-width:1100px; margin:0 auto; padding:0 16px}
-    .hero{padding:70px 0 24px}
-    .headline{font-size:clamp(28px,6vw,56px); line-height:1.08; margin:0 0 14px}
-    .sub{font-size:clamp(14px,2.6vw,18px); color:var(--muted); margin:0 0 22px}
+    .hero{padding:50px 0 24px}
+    .headline{font-size:clamp(32px,7vw,56px); line-height:1.1; margin:0 0 16px; word-wrap:break-word}
+    .sub{font-size:clamp(16px,3vw,18px); color:var(--muted); margin:0 0 24px; line-height:1.6}
     .panel{background:linear-gradient(180deg,var(--glass), rgba(255,255,255,.03));
-      border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+      border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
 
-    .section-title{color:var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; margin:40px 0 12px}
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
-    .tile{grid-column:span 6; min-height:200px}
+    .section-title{color:var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; margin:50px 0 16px}
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+    .tile{grid-column:span 6; min-height:180px}
     .tile.big{grid-column:span 12}
-    .tile h3{margin:0 0 6px}
-    .tile p{margin:0; color:var(--muted)}
-    .project-links{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+    .tile h3{margin:0 0 8px; font-size:1.2rem}
+    .tile p{margin:0; color:var(--muted); line-height:1.5}
+    .project-links{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
 
-    /* form embed: responsive wrapper keeps aspect but grows on mobile */
-    .form-wrap{position:relative; width:100%; height:0; padding-bottom:160vh; /* tall on mobile for full form */
+    /* Improved form for mobile */
+    .form-wrap{position:relative; width:100%; height:600px; /* Fixed height instead of padding-bottom */
       border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:rgba(0,0,0,.15)}
     .form-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
-    footer{color:var(--muted); margin:60px 0 40px}
+    footer{color:var(--muted); margin:60px 0 40px; text-align:center}
 
-    /* mobile-first adaptations */
-    @media (max-width:880px){
-      .grid{grid-template-columns:repeat(6,1fr)}
-      .tile{grid-column:span 6}
-    }
-    @media (max-width:520px){
-      .nav{gap:8px}
-      .btn{padding:10px 12px}
-      .form-wrap{padding-bottom:200vh}
-    }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px}
+    .focus-panel{margin-top:20px}
 
-    /* light theme */
-    .light{
-      --bg0:#f7f8fb; --bg1:#eef1f7; --fg:#0e1015; --muted:#4b5563; --glass:rgba(255,255,255,.65);
-      --border:rgba(0,0,0,.08); --shadow:0 8px 24px rgba(0,0,0,.12);
-    }
-    .toggle{display:inline-flex; width:48px; height:28px; border-radius:999px; border:1px solid var(--border); align-items:center; padding:2px}
+    .toggle{display:inline-flex; width:48px; height:28px; border-radius:999px; border:1px solid var(--border); align-items:center; padding:2px; min-height:44px}
     .knob{width:24px; height:24px; background:#fff; border-radius:999px; transform:translateX(0); transition:transform .2s}
     .toggle.active .knob{transform:translateX(20px)}
     a.link{color:var(--brand2); text-decoration:none; border-bottom:1px dashed transparent}
     a.link:hover{border-bottom-color:currentColor}
+
+    /* Mobile optimizations */
+    @media (max-width:880px){
+      .grid{grid-template-columns:repeat(6,1fr); gap:14px}
+      .tile{grid-column:span 6; min-height:160px}
+      .hero{padding:40px 0 20px}
+      .section-title{margin:40px 0 14px}
+    }
+
+    @media (max-width:640px){
+      .nav{gap:8px; padding:10px 16px}
+      .brand{font-size:1rem}
+      
+      /* Mobile menu */
+      .nav-menu{display:block; position:absolute; top:100%; left:0; right:0; 
+        background:rgba(10,11,16,.95); backdrop-filter:blur(10px); border-top:1px solid var(--border);
+        padding:16px; transform:translateY(-100%); opacity:0; visibility:hidden; transition:all .3s ease}
+      .nav-menu.active{transform:translateY(0); opacity:1; visibility:visible}
+      .nav-menu a{display:block; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.1)}
+      .nav-menu a:last-child{border-bottom:none}
+      
+      .menu-toggle{display:block}
+      .nav .btn:not(.toggle){display:none}
+      
+      .grid{grid-template-columns:1fr; gap:12px}
+      .tile{grid-column:span 1; min-height:auto; padding:16px}
+      .tile.big{grid-column:span 1}
+      
+      .hero{padding:30px 0 20px}
+      .headline{font-size:clamp(28px,8vw,40px)}
+      .sub{font-size:16px}
+      .hero-actions{gap:10px}
+      .btn{padding:12px 16px; font-size:0.9rem}
+      .panel{padding:16px}
+      .tile h3{font-size:1.1rem; margin-bottom:8px}
+      .tile p{font-size:0.9rem; line-height:1.5}
+      
+      .form-wrap{height:500px}
+      .container{padding:0 12px}
+    }
+
+    @media (max-width:480px){
+      .hero-actions{flex-direction:column; align-items:stretch}
+      .hero-actions .btn{justify-content:center}
+      .form-wrap{height:450px}
+      .headline{font-size:clamp(24px,9vw,36px)}
+    }
+
+    /* Light theme */
+    .light{
+      --bg0:#f7f8fb; --bg1:#eef1f7; --fg:#0e1015; --muted:#4b5563; --glass:rgba(255,255,255,.65);
+      --border:rgba(0,0,0,.08); --shadow:0 8px 24px rgba(0,0,0,.12);
+    }
+    .light .nav-menu{background:rgba(247,248,251,.95)}
+
+    /* Focus and accessibility improvements */
+    .btn:focus, .toggle:focus, .menu-toggle:focus{
+      outline:2px solid var(--brand); outline-offset:2px}
+    
+    /* Better link spacing for mobile */
+    @media (max-width:640px){
+      .tile p a.link{display:inline-block; margin-top:8px}
+    }
   </style>
 </head>
 <body>
@@ -95,6 +152,13 @@
       <a class="btn ghost mono" href="#writing">Writing</a>
       <a class="btn" href="#contact">Contact</a>
       <button id="theme" class="toggle" aria-label="Toggle theme"><span class="knob"></span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      
+      <div class="nav-menu" id="navMenu">
+        <a class="btn ghost mono" href="#projects">Projects</a>
+        <a class="btn ghost mono" href="#writing">Writing</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
     </nav>
   </header>
 
@@ -102,16 +166,16 @@
     <section class="hero">
       <h1 class="headline">Building AI-first, agentic B2B products.</h1>
       <p class="sub">
-        I’m Paarijat—SDE-AI focused on backend systems and agentic architectures:
+        I'm Paarijat—SDE-AI focused on backend systems and agentic architectures:
         multi-agent planning, retrieval, tool-use, and reliability. Currently leading backend and whole
         agent design for vertical B2B products, exploring distribution strategies and why most enterprise AI efforts stall.
       </p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap">
+      <div class="hero-actions">
         <a class="btn primary" href="https://github.com/paarijat007" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="#form">Get in touch</a>
         <a class="btn ghost mono" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
-      <div class="panel" style="margin-top:16px">
+      <div class="panel focus-panel">
         <div class="mono" style="opacity:.8">Focus</div>
         <div>Agent orchestration, evaluators, robust tool calling, and production-grade serving.</div>
       </div>
@@ -155,9 +219,8 @@
 
     <h2 class="section-title mono" id="form">Get in touch</h2>
     <section class="panel">
-      <p style="margin-top:0">Prefer async? Fill the form below and I’ll reach out.</p>
+      <p style="margin-top:0">Prefer async? Fill the form below and I'll reach out.</p>
       <div class="form-wrap">
-        <!-- Replace YOUR_FORM_ID with your Google Form ID. Keep ?embedded=true -->
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfxK-nHr4ZRNBNdiLocb9fJ4L-TINcVm8KYGmy2J0VJL42mSQ/viewform?embedded=true" width="640" height="552" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       </div>
     </section>
@@ -179,22 +242,33 @@
     </section>
 
     <footer>
-      <div class="mono">© <span id="year"></span> Paarijat • Building For Enterprises/div>
+      <div class="mono">© <span id="year"></span> Paarijat • Building For Enterprises</div>
     </footer>
   </main>
 
   <script>
-    // theme
-    const html = document.documentElement;
-    const btn = document.getElementById("theme");
-    const pref = localStorage.getItem("theme");
-    if(pref === "light"){ html.classList.add("light"); btn.classList.add("active"); }
-    btn.addEventListener("click", ()=>{
-      html.classList.toggle("light");
-      btn.classList.toggle("active");
-      localStorage.setItem("theme", html.classList.contains("light") ? "light" : "dark");
+    // Mobile menu toggle
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+    menuToggle.addEventListener("click", ()=>{
+      navMenu.classList.toggle("active");
     });
-    // year
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (e)=>{
+      if(!menuToggle.contains(e.target) && !navMenu.contains(e.target)){
+        navMenu.classList.remove("active");
+      }
+    });
+
+    // Close mobile menu when clicking on a link
+    navMenu.addEventListener("click", (e)=>{
+      if(e.target.tagName === "A"){
+        navMenu.classList.remove("active");
+      }
+    });
+
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
